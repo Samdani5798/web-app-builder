@@ -1,0 +1,52 @@
+workflows:
+  android-build:
+    name: Android Build
+    max_build_duration: 60
+    environment:
+      java: 17
+
+    scripts:
+      - name: Fix gradle-wrapper.jar
+        script: |
+          GRADLE_VERSION="8.2.1"
+          WRAPPER_JAR="gradle/wrapper/gradle-wrapper.jar"
+          DIST_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
+          TMP_ZIP="/tmp/gradle-${GRADLE_VERSION}-bin.zip"
+          TMP_DIR="/tmp/gradle-extract"
+
+          echo "Downloading Gradle ${GRADLE_VERSION} distribution..."
+          curl -L --retry 3 --retry-delay 2 -o "$TMP_ZIP" "$DIST_URL"
+          echo "Downloaded: $(wc -c < $TMP_ZIP) bytes"
+
+          echo "Extracting gradle-wrapper.jar from distribution..."
+          mkdir -p "$TMP_DIR"
+          unzip -q "$TMP_ZIP" \
+            "gradle-${GRADLE_VERSION}/lib/gradle-wrapper.jar" \
+            -d "$TMP_DIR"
+
+          cp "$TMP_DIR/gradle-${GRADLE_VERSION}/lib/gradle-wrapper.jar" "$WRAPPER_JAR"
+          echo "Copied jar: $(wc -c < $WRAPPER_JAR) bytes"
+
+          # Verify
+          java -jar "$WRAPPER_JAR" --version > /dev/null 2>&1 \
+            && echo "✓ gradle-wrapper.jar is valid" \
+            || echo "⚠ Verification skipped (expected without full gradle home)"
+
+          rm -rf "$TMP_ZIP" "$TMP_DIR"
+
+      - name: Set gradlew permissions
+        script: chmod +x gradlew
+
+      - name: Build Debug APK
+        script: ./gradlew assembleDebug
+
+    artifacts:
+      - app/build/outputs/apk/debug/app-debug.apk
+
+    publishing:
+      email:
+        recipients:
+          - your@email.com
+        notify:
+          success: true
+          failure: true

@@ -1,0 +1,6 @@
+{
+  "name": "VoltWeb",
+  "description": "A professional Android application builder that transforms HTML, CSS, JavaScript, assets, and config.json configurations into fully functioning offline Android applications with a powerful native bridge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

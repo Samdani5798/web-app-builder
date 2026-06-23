@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Code Bracket Left (<) -->
+    <path
+        android:pathData="M28,34 L12,54 L28,74"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="12"
+                android:startY="34"
+                android:endX="28"
+                android:endY="74"
+                android:type="linear">
+                <item android:color="#00F2FE" android:offset="0.0" />
+                <item android:color="#4FACFE" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Code Bracket Right (>) -->
+    <path
+        android:pathData="M80,34 L96,54 L80,74"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="80"
+                android:startY="34"
+                android:endX="96"
+                android:endY="74"
+                android:type="linear">
+                <item android:color="#00F2FE" android:offset="0.0" />
+                <item android:color="#4FACFE" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Energetic Lightning Bolt (⚡) -->
+    <path
+        android:pathData="M58,16 L38,52 L54,52 L44,88 L70,48 L54,48 Z"
+        android:fillType="nonZero">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="38"
+                android:startY="16"
+                android:endX="70"
+                android:endY="88"
+                android:type="linear">
+                <item android:color="#FFD600" android:offset="0.0" />
+                <item android:color="#FF512F" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    
+</vector>
